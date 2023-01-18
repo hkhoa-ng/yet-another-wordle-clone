@@ -1,0 +1,10 @@
+{
+  "files": {
+    "main.js": "/yet-another-wordle-clone/static/js/main.2cd051ef.js",
+    "index.html": "/yet-another-wordle-clone/index.html",
+    "main.2cd051ef.js.map": "/yet-another-wordle-clone/static/js/main.2cd051ef.js.map"
+  },
+  "entrypoints": [
+    "static/js/main.2cd051ef.js"
+  ]
+}
