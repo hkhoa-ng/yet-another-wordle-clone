@@ -20,7 +20,7 @@ const validGuesses = require("./words/valid_guess.json");
 const KEYBOARD = [
   ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"],
   ["A", "S", "D", "F", "G", "H", "J", "K", "L"],
-  ["ENTER", "Z", "X", "C", "V", "B", "N", "M", "← BACKSPACE"],
+  ["ENTER", "Z", "X", "C", "V", "B", "N", "M", "←"],
 ];
 
 function setEmptyBoard() {
@@ -67,7 +67,7 @@ function App() {
   // ChakraUI's toast to announce game state
   const toast = useToast();
 
-  // Functions of the game
+  // Functions of the game: pressing the keyboard buttons
   function pressLetter(letter) {
     let currentBoard = [...board];
     if (currentLetter < 5) {
@@ -149,6 +149,14 @@ function App() {
           status: "warning",
         });
       }
+    } else {
+      toast({
+        title: "Word too short!",
+        position: "top",
+        description: `Your word is too short`,
+        duration: 2000,
+        status: "warning",
+      });
     }
   }
 
@@ -164,7 +172,7 @@ function App() {
     }
   }
 
-  // Elements to render the game
+  // Elements to render the game: the letter board and keyboard
   const gameBoard = (
     <VStack>
       {board.map((row) => {
@@ -178,7 +186,6 @@ function App() {
       })}
     </VStack>
   );
-
   const gameKeyBoard = (
     <VStack>
       {keyboard.map((row) => {
@@ -193,7 +200,7 @@ function App() {
                     key={nanoid()}
                   />
                 );
-              if (letter.letter === "← BACKSPACE")
+              if (letter.letter === "←")
                 return (
                   <KeyboardTile
                     letter={letter}
@@ -235,8 +242,10 @@ function App() {
             setCurrentRow(0);
             setCurrentLetter(0);
           }}
+          colorScheme="red"
+          w="100%"
         >
-          Restart
+          RESTART
         </Button>
         <Spacer />
       </VStack>
