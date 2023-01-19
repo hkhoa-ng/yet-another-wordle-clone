@@ -6,6 +6,7 @@ import {
   VStack,
   Button,
   useToast,
+  keyframes,
 } from "@chakra-ui/react";
 import LetterTile from "./components/LetterTile";
 import KeyboardTile from "./components/KeyboardTile";
@@ -208,7 +209,7 @@ function App() {
     </VStack>
   );
   const gameKeyBoard = (
-    <VStack pb="20px">
+    <VStack>
       {keyboard.map((row) => {
         return (
           <HStack key={nanoid()}>
@@ -247,18 +248,35 @@ function App() {
 
   return (
     <Center h="100vh" w="100vw" bg="gray.800">
-      <VStack h="100%" gap="20px">
+      <VStack
+        h={{ base: "90%", md: "100%" }}
+        gap={{ base: "5px", sm: "15px", md: "25px" }}
+      >
         <Spacer />
-        <Text fontWeight="bold" fontSize="2rem" color="white" pb="20px">
+        <Text
+          fontWeight="bold"
+          fontSize={{ base: "1.7rem", md: "2rem" }}
+          color="white"
+        >
           Yet Another Wordle 📚
         </Text>
-        {/* <Text>{wordToGuess}</Text> */}
-        {/* <Text>Current row: {currentRow}</Text> */}
-        {/* <Text>Is Over: {isOver ? "true" : "false"}</Text> */}
-        {/* <Text>Is Win: {isWin ? "true" : "false"}</Text> */}
+        <VStack position="sticky" top="5%">
+          <Text fontSize="0.8rem" color="gray.400">
+            {isOver && !isWin ? "The word is:" : "."}
+          </Text>
+          <Text
+            color="white"
+            textAlign="center"
+            fontWeight="black"
+            fontSize="1.2rem"
+          >
+            {isOver && !isWin ? wordToGuess : "."}
+          </Text>
+        </VStack>
         {gameBoard}
         {gameKeyBoard}
         <Button
+          size={{ base: "sm", sm: "md" }}
           onClick={() => {
             setWordToGuess(
               wordList[
@@ -272,7 +290,9 @@ function App() {
             setIsOver(false);
             setIsWin(false);
           }}
-          colorScheme="red"
+          bg="red.500"
+          _hover={{ background: "red.600" }}
+          color="white"
           w="80%"
         >
           RESTART

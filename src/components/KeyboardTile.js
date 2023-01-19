@@ -31,7 +31,7 @@ function KeyboardTile({ letter, clickHandler }) {
       onClick={clickHandler}
       bg={bg}
       _hover={hover}
-      size={{ base: "sm", md: "md", lg: "lg" }}
+      size={{ base: "xs", sm: "sm", md: "md", lg: "lg" }}
     >
       {letter.letter}
     </Button>
